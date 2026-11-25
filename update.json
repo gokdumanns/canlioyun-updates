@@ -1,0 +1,47 @@
+{
+  "appVersion": "1.1.4",
+  "appDownloadUrl": "https://github.com/gokdumanns/canlioyun-updates/releases/download/v1.1.4/CanliOyun-Setup-v1.1.4.exe",
+  "notes": "Canli Oyun v1.1.4: Calisan YouTube muzik/playlist motoru + Tek tikla kulaktan susturma ses ayirici!",
+  "updatedAt": "2026-11-25T21:21:12.219Z",
+  "games": {
+    "hipodrom-3d": {
+      "name": "Süper Hipodrom 3D",
+      "version": "1.2.2",
+      "files": [
+        "horse.js",
+        "hud.js",
+        "index.js",
+        "manifest.json",
+        "spectators.js",
+        "stadium.js"
+      ]
+    },
+    "renk-fethi": {
+      "name": "Renk Fethi",
+      "version": "1.0.0",
+      "files": [
+        "index.js",
+        "manifest.json"
+      ]
+    },
+    "sahil-akdeniz-3d": {
+      "name": "Sahil Böcekleri 3D",
+      "version": "1.0.1",
+      "files": [
+        "beach.js",
+        "cockroach.js",
+        "hud.js",
+        "index.js",
+        "manifest.json"
+      ]
+    },
+    "taht-savasi": {
+      "name": "Taht Savaşı",
+      "version": "1.0.0",
+      "files": [
+        "index.js",
+        "manifest.json"
+      ]
+    }
+  }
+}

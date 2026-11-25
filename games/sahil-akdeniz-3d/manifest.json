@@ -1,0 +1,78 @@
+{
+  "id": "sahil-akdeniz-3d",
+  "name": "Sahil Böcekleri 3D",
+  "version": "1.0.1",
+  "description": "Dolunaylı Akdeniz kumsalında kamp ateşi etrafında hamam böcekleri! Gitar çalan, kartonla mangal yelleyen, semaverde çay dağıtan ve çekirdek çitleyen böcekler; martı baskını, dev dalga, dilek fenerleri ve zabıta baskınıyla canlı gece şöleni!",
+  "engine": "three",
+  "entry": "index.js",
+  "tags": ["3D", "sahil", "komedi", "müzik", "sosyal"],
+  "ui": { "legend": "none" },
+  "actions": [
+    { "id": "join_beach", "label": "Ateş Çemberine Katıl", "icon": "🔥", "description": "İzleyiciyi sahilde ateşin etrafındaki 3B böcek olarak oturtur.",
+      "params": [] },
+    { "id": "set_gender", "label": "Sahil Kıyafeti", "icon": "👗", "description": "Böceğin kıyafetini kadın (yazlık elbise & çiçek tacı) veya erkek (Hawaii gömlek & gözlük) yapar.",
+      "params": [{ "key": "gender", "label": "Tarz", "type": "select", "default": "f",
+        "options": [{ "value": "f", "label": "Kadın (Elbise & Çiçek Tacı)" }, { "value": "m", "label": "Erkek (Hawaii Gömlek & Gözlük)" }] }] },
+    { "id": "take_role", "label": "VIP Rol İste", "icon": "🎸", "description": "Seçilen VIP rol (Gitarist, Mangal Şefi, Semaver Çaycı, Darbukacı) boşsa veya koruması bittiyse devralır.",
+      "params": [{ "key": "role", "label": "Rol", "type": "select", "default": "guitar",
+        "options": [
+          { "value": "guitar", "label": "🎸 Gitarist (Sahil Kralı)" },
+          { "value": "mangal", "label": "🔥 Mangal Şefi (Usta)" },
+          { "value": "tea", "label": "🫖 Semaver Çaycı" },
+          { "value": "darbuka", "label": "🥁 Darbukacı (Ritim)" }
+        ] }] },
+    { "id": "stoke_fire", "label": "Odun At & Közle", "icon": "🪵", "description": "Ateşe odun atar, alevi harlar ve Keyif Metresini yükseltir.",
+      "params": [{ "key": "power", "label": "Güç", "type": "number", "default": 2, "min": 1, "max": 10 }] },
+    { "id": "lighter", "label": "Işık / Çakmak Kaldır", "icon": "🔦", "description": "Böcek elindeki telefon ışığını / çakmağı havaya kaldırıp müzikle sallanır!",
+      "params": [{ "key": "seconds", "label": "Saniye", "type": "number", "default": 10, "min": 4, "max": 20 }] },
+    { "id": "swim", "label": "Denize Atla", "icon": "🌊", "description": "Böcek can simidini takıp Akdeniz'in serin sularında yüzer (tekrar yazınca kumsala döner).",
+      "params": [] },
+    { "id": "grill_sucuk", "label": "Odun & Sucuk Şöleni", "icon": "🌭", "description": "Mangala taze sucuk/köfte atar, ateşi harlar ve tüm sahile keyif verir.",
+      "params": [] },
+    { "id": "seagull_raid", "label": "Martı Baskını", "icon": "🐦", "description": "Dev 3B martı gökten pike yapıp mangaldaki sucuğu kapıp kaçar!",
+      "params": [] },
+    { "id": "big_wave", "label": "Dev Dalga", "icon": "🌊", "description": "Denizden köpüklü dev dalga kumsala vurur; ateş cızlar, böcekler kumda yuvarlanır!",
+      "params": [] },
+    { "id": "vip_spotlight", "label": "Sahne & Gitarist Kap", "icon": "🎸", "description": "12 sn korumalı Gitarist (veya Mangal) başrolünü anında alır, kamera yakın çekime girip solo attırır!",
+      "params": [] },
+    { "id": "lantern_feast", "label": "Dilek Feneri & Çay", "icon": "🏮", "description": "Gökyüzüne isimli parlayan 3B dilek fenerleri salar, çaycı herkese çay dağıtır!",
+      "params": [{ "key": "count", "label": "Fener Sayısı", "type": "number", "default": 8, "min": 1, "max": 14 }] },
+    { "id": "zabita_raid", "label": "Zabıta Baskını", "icon": "👮", "description": "Fenerli dev Sahil Bekçisi düdükle gelir; çaycı ona çay uzatınca 'Bizden Abi!' deyip oturup eğlenceye katılır + havai fişek!",
+      "params": [] }
+  ],
+  "defaultRules": [
+    { "id": "jn", "label": "Ateşe Katıl", "trigger": { "type": "chat", "keywords": ["katıl", "katil", "gir", "ben", "geldim"], "match": "exact" }, "action": "join_beach", "params": {} },
+    { "id": "rg", "label": "Gitarist Ol", "trigger": { "type": "chat", "keywords": ["gitar", "gitarist", "çal", "cal"], "match": "exact" }, "action": "take_role", "params": { "role": "guitar" }, "cooldown": 10 },
+    { "id": "rm", "label": "Mangal Şefi", "trigger": { "type": "chat", "keywords": ["mangal", "sucuk", "yelle"], "match": "exact" }, "action": "take_role", "params": { "role": "mangal" }, "cooldown": 10 },
+    { "id": "rt", "label": "Semaver Çaycı", "trigger": { "type": "chat", "keywords": ["çay", "cay", "semaver", "çaycı"], "match": "exact" }, "action": "take_role", "params": { "role": "tea" }, "cooldown": 10 },
+    { "id": "rd", "label": "Darbukacı", "trigger": { "type": "chat", "keywords": ["ritim", "darbuka", "alkış"], "match": "exact" }, "action": "take_role", "params": { "role": "darbuka" }, "cooldown": 10 },
+    { "id": "gf", "label": "Kadın Kıyafeti", "trigger": { "type": "chat", "keywords": ["kadın", "kadin", "kız", "kiz", "bayan"], "match": "exact" }, "action": "set_gender", "params": { "gender": "f" } },
+    { "id": "gm", "label": "Erkek Kıyafeti", "trigger": { "type": "chat", "keywords": ["erkek", "bay"], "match": "exact" }, "action": "set_gender", "params": { "gender": "m" } },
+    { "id": "st", "label": "Odun / Közle", "trigger": { "type": "chat", "keywords": ["köz", "koz", "közle", "kozle", "odun", "ateş", "ates"], "match": "contains" }, "action": "stoke_fire", "params": { "power": 3 }, "cooldown": 6 },
+    { "id": "lt", "label": "Işık Kaldır", "trigger": { "type": "chat", "keywords": ["ışık", "isik", "çakmak", "cakmak", "fener", "flaş"], "match": "contains" }, "action": "lighter", "params": { "seconds": 10 }, "cooldown": 8 },
+    { "id": "sw", "label": "Denize Atla", "trigger": { "type": "chat", "keywords": ["deniz", "yüz", "yuz", "su"], "match": "exact" }, "action": "swim", "params": {}, "cooldown": 6 },
+    { "id": "lk", "label": "Beğeni = Köz", "trigger": { "type": "like", "every": 5 }, "action": "stoke_fire", "params": { "power": 1 } },
+    { "id": "fl", "label": "Takip = Sucuk", "trigger": { "type": "follow" }, "action": "grill_sucuk", "params": {}, "cooldown": 600 },
+    { "id": "sh", "label": "Paylaş = Fener", "trigger": { "type": "share" }, "action": "lantern_feast", "params": { "count": 2 }, "cooldown": 25 },
+    { "id": "rose", "label": "Odun & Sucuk", "trigger": { "type": "gift", "giftNames": ["Rose", "Gül"], "giftIds": ["5655"], "diamonds": 1 }, "action": "grill_sucuk", "params": {} },
+    { "id": "g5", "label": "Martı Baskını", "trigger": { "type": "gift", "minDiamonds": 2, "maxDiamonds": 9 }, "action": "seagull_raid", "params": {} },
+    { "id": "g20", "label": "Dev Dalga", "trigger": { "type": "gift", "minDiamonds": 10, "maxDiamonds": 19 }, "action": "big_wave", "params": {} },
+    { "id": "g50", "label": "Gitarist Kap", "trigger": { "type": "gift", "minDiamonds": 20, "maxDiamonds": 49 }, "action": "vip_spotlight", "params": {} },
+    { "id": "g99", "label": "Dilek Feneri", "trigger": { "type": "gift", "minDiamonds": 50, "maxDiamonds": 98 }, "action": "lantern_feast", "params": { "count": 8 } },
+    { "id": "g250", "label": "Zabıta Baskını", "trigger": { "type": "gift", "minDiamonds": 99 }, "action": "zabita_raid", "params": {} }
+  ],
+  "settings": [
+    { "key": "cameraMode", "label": "Kamera açısı", "type": "select", "default": "auto", "options": [
+      { "value": "auto", "label": "Akışkan Sahil Drone (Geniş sahil + yakın çekim gir-çık)" },
+      { "value": "orbit", "label": "Sakin Yörünge (Tüm kumsal)" },
+      { "value": "fire", "label": "Sabit Ateş Başında" }
+    ] },
+    { "key": "maxCrowd", "label": "Ateş çemberi kapasitesi", "type": "select", "default": "20", "options": [
+      { "value": "14", "label": "14 Böcek" },
+      { "value": "20", "label": "20 Böcek (Önerilen)" },
+      { "value": "28", "label": "28 Böcek (Kalabalık)" }
+    ] },
+    { "key": "nightDuration", "label": "Gece şöleni süresi (sn)", "description": "Keyif barı dolmazsa bu süre sonunda şölen başlar", "type": "number", "default": 90, "min": 45, "max": 180 },
+    { "key": "sound", "label": "Ortam & efekt sesleri", "description": "Dalga, ateş, mangal cızırtısı, martı ve gitar tınıları (müziği Müzik sekmesinden aç)", "type": "boolean", "default": true }
+  ]
+}

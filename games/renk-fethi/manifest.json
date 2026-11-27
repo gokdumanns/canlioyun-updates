@@ -1,0 +1,44 @@
+{
+  "id": "renk-fethi",
+  "name": "Renk Fethi",
+  "version": "1.0.0",
+  "description": "4 renkli haritada dev bölge savaşı! İzleyiciler 1-2-3-4 yazarak rengini seçer, beğeni ve hediyelerle hücum dalgası, renk bombası, kalkan, lazer ve süpernova atarak haritayı kendi rengine boyar. Kalabalık yayınlar için ideal.",
+  "engine": "canvas2d",
+  "entry": "index.js",
+  "tags": ["takım", "fetih", "kalabalık"],
+  "ui": { "legend": "none" },
+  "actions": [
+    { "id": "join_color", "label": "Renge Katıl", "icon": "🎨", "description": "İzleyiciyi seçilen renk takımına alır.",
+      "params": [{ "key": "color", "label": "Renk", "type": "select", "default": "0",
+        "options": [{ "value": "0", "label": "🔴 Kırmızı" }, { "value": "1", "label": "🔵 Mavi" }, { "value": "2", "label": "🟢 Yeşil" }, { "value": "3", "label": "🟡 Sarı" }] }] },
+    { "id": "push", "label": "Bölge Fethet", "icon": "⚡", "description": "Renginin cephesinden rakip karelere saldırır.",
+      "params": [{ "key": "orbs", "label": "Saldırı adedi", "type": "number", "default": 2, "min": 1, "max": 40 }] },
+    { "id": "wave", "label": "Hücum Dalgası", "icon": "🌊", "description": "Cepheye çoklu fetih dalgası yollar.",
+      "params": [{ "key": "orbs", "label": "Dalga gücü", "type": "number", "default": 14, "min": 4, "max": 60 }] },
+    { "id": "bomb", "label": "Renk Bombası", "icon": "💥", "description": "En güçlü rakibin ortasına patlayan renk bombası indirir.",
+      "params": [{ "key": "radius", "label": "Patlama çapı", "type": "number", "default": 3.4, "min": 1.5, "max": 8 }] },
+    { "id": "shield", "label": "Kale Kalkanı", "icon": "🛡️", "description": "Renginin sınırlarını koruma altına alır.",
+      "params": [{ "key": "seconds", "label": "Saniye", "type": "number", "default": 12, "min": 3, "max": 60 }] },
+    { "id": "laser", "label": "Lazer Tarama", "icon": "⚡", "description": "Haritayı boydan boya kesen lazerle koca bir satır ve sütunu boyar." },
+    { "id": "supernova", "label": "Süpernova", "icon": "🌋", "description": "Haritanın kalbinde dev patlama açıp büyük bir alanı anında fetheder." }
+  ],
+  "defaultRules": [
+    { "id": "c0", "label": "Kırmızıya Katıl", "trigger": { "type": "chat", "keywords": ["1", "kırmızı", "kirmizi", "red"], "match": "exact" }, "action": "join_color", "params": { "color": "0" } },
+    { "id": "c1", "label": "Maviye Katıl", "trigger": { "type": "chat", "keywords": ["2", "mavi", "blue"], "match": "exact" }, "action": "join_color", "params": { "color": "1" } },
+    { "id": "c2", "label": "Yeşile Katıl", "trigger": { "type": "chat", "keywords": ["3", "yeşil", "yesil", "green"], "match": "exact" }, "action": "join_color", "params": { "color": "2" } },
+    { "id": "c3", "label": "Sarıya Katıl", "trigger": { "type": "chat", "keywords": ["4", "sarı", "sari", "yellow"], "match": "exact" }, "action": "join_color", "params": { "color": "3" } },
+    { "id": "lk", "label": "Beğeni = Saldırı", "trigger": { "type": "like", "every": 4 }, "action": "push", "params": { "orbs": 2 } },
+    { "id": "rose", "label": "Hücum Dalgası", "trigger": { "type": "gift", "giftNames": ["Rose", "Gül"], "giftIds": ["5655"], "diamonds": 1 }, "action": "wave", "params": { "orbs": 14 } },
+    { "id": "g5", "label": "Renk Bombası", "trigger": { "type": "gift", "minDiamonds": 5, "maxDiamonds": 29 }, "action": "bomb", "params": { "radius": 3.4 } },
+    { "id": "g30", "label": "Kale Kalkanı", "trigger": { "type": "gift", "minDiamonds": 30, "maxDiamonds": 98 }, "action": "shield", "params": { "seconds": 12 } },
+    { "id": "g99", "label": "Lazer Tarama", "trigger": { "type": "gift", "minDiamonds": 99, "maxDiamonds": 498 }, "action": "laser" },
+    { "id": "g499", "label": "Süpernova", "trigger": { "type": "gift", "minDiamonds": 499 }, "action": "supernova" },
+    { "id": "fl", "label": "Takip = Dalga", "trigger": { "type": "follow" }, "action": "wave", "params": { "orbs": 10 }, "cooldown": 600 }
+  ],
+  "settings": [
+    { "key": "winPercent", "label": "Kazanma yüzdesi (%)", "description": "Haritanın bu kadarını ele geçiren renk turu kazanır", "type": "number", "default": 68, "min": 40, "max": 95 },
+    { "key": "roundSeconds", "label": "Tur süresi (saniye)", "type": "number", "default": 120, "min": 30, "max": 300 },
+    { "key": "randomEvents", "label": "Rastgele harita olayları", "description": "Altın kare ve nötr fırtına olayları", "type": "boolean", "default": true },
+    { "key": "sound", "label": "Ses efektleri", "type": "boolean", "default": true }
+  ]
+}

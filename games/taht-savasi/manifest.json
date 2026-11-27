@@ -1,0 +1,44 @@
+{
+  "id": "taht-savasi",
+  "name": "Taht Savaşı",
+  "version": "1.0.0",
+  "description": "Lavlarla çevrili daralan ring arenasında Battle Royale! İzleyiciler kendi profil fotoğrafıyla arenaya iner, beğeniyle saldırır, hediyelerle devleşir, şok dalgası, kalkan, meteor ve kara delik açarak rakipleri lavlara atar.",
+  "engine": "canvas2d",
+  "entry": "index.js",
+  "tags": ["battle royale", "arena", "aksiyon"],
+  "ui": { "legend": "none" },
+  "actions": [
+    { "id": "join", "label": "Arenaya İn", "icon": "⚔️", "description": "İzleyiciyi ring arenasına indirir (zaten içerideyse merkeze hamle yaptırır)." },
+    { "id": "dash", "label": "Saldır", "icon": "⚡", "description": "En yakın rakibe doğru hızla atılıp çarpar.",
+      "params": [{ "key": "power", "label": "Güç", "type": "number", "default": 1, "min": 1, "max": 5 }] },
+    { "id": "giant", "label": "Dev Modu", "icon": "🔥", "description": "Savaşçı büyür, kütlesi 3 kat artar ve önüne geleni uçurur.",
+      "params": [{ "key": "seconds", "label": "Saniye", "type": "number", "default": 14, "min": 3, "max": 60 }] },
+    { "id": "shockwave", "label": "Şok Dalgası", "icon": "💥", "description": "Etrafındaki tüm rakipleri dışa fırlatan enerji patlaması.",
+      "params": [{ "key": "force", "label": "İtiş gücü", "type": "number", "default": 900, "min": 300, "max": 2500 }] },
+    { "id": "shield", "label": "Altın Kalkan", "icon": "🛡️", "description": "İtilmeye karşı korur ve çarpan rakipleri geri teper.",
+      "params": [{ "key": "seconds", "label": "Saniye", "type": "number", "default": 14, "min": 3, "max": 60 }] },
+    { "id": "meteor", "label": "Meteor Yağmuru", "icon": "☄️", "description": "Rakiplerin üstüne gökyüzünden alevli meteorlar indirir.",
+      "params": [{ "key": "count", "label": "Meteor adedi", "type": "number", "default": 3, "min": 1, "max": 10 }] },
+    { "id": "blackhole", "label": "Kara Delik", "icon": "🌀", "description": "Arenanın ortasında girdap açar, herkesi çekip dışarı savurur.",
+      "params": [{ "key": "seconds", "label": "Saniye", "type": "number", "default": 3.5, "min": 1, "max": 10 }] }
+  ],
+  "defaultRules": [
+    { "id": "r_join_m", "label": "Arenaya İn", "trigger": { "type": "member" }, "action": "join" },
+    { "id": "r_join_c", "label": "Arenaya İn", "trigger": { "type": "chat", "keywords": ["gir", "savaş", "savas", "ben", "1", "arena"], "match": "contains" }, "action": "join" },
+    { "id": "r_dash_c", "label": "Saldır", "trigger": { "type": "chat", "keywords": ["saldır", "saldir", "vur", "atıl"], "match": "contains" }, "action": "dash", "params": { "power": 2 } },
+    { "id": "r_dash_l", "label": "Beğeni = Saldırı", "trigger": { "type": "like", "every": 4 }, "action": "dash", "params": { "power": 1 } },
+    { "id": "r_giant", "label": "Dev Modu", "trigger": { "type": "gift", "giftNames": ["Rose", "Gül"], "giftIds": ["5655"], "diamonds": 1 }, "action": "giant", "params": { "seconds": 14 } },
+    { "id": "r_shock", "label": "Şok Dalgası", "trigger": { "type": "gift", "minDiamonds": 5, "maxDiamonds": 29 }, "action": "shockwave", "params": { "force": 950 } },
+    { "id": "r_shield", "label": "Altın Kalkan", "trigger": { "type": "gift", "minDiamonds": 30, "maxDiamonds": 98 }, "action": "shield", "params": { "seconds": 14 } },
+    { "id": "r_meteor", "label": "Meteor", "trigger": { "type": "gift", "minDiamonds": 99, "maxDiamonds": 498 }, "action": "meteor", "params": { "count": 3 } },
+    { "id": "r_hole", "label": "Kara Delik", "trigger": { "type": "gift", "minDiamonds": 499 }, "action": "blackhole", "params": { "seconds": 3.5 } },
+    { "id": "r_follow", "label": "Takip = Kalkan", "trigger": { "type": "follow" }, "action": "shield", "params": { "seconds": 10 }, "cooldown": 600 }
+  ],
+  "settings": [
+    { "key": "roundSeconds", "label": "Tur süresi (saniye)", "description": "Süre dolunca veya tek kişi kalınca tur biter", "type": "number", "default": 90, "min": 30, "max": 300 },
+    { "key": "maxFighters", "label": "En fazla savaşçı", "description": "Kalabalık arttıkça arena otomatik genişler ve zorluk artar", "type": "number", "default": 45, "min": 8, "max": 80 },
+    { "key": "randomEvents", "label": "Rastgele arena olayları", "description": "Buz zemini, şimşek fırtınası, gizemli sandık, deprem, 2× taht", "type": "boolean", "default": true },
+    { "key": "shrinkArena", "label": "Daralan lav halkası", "description": "Tur ilerledikçe güvenli alan daralır", "type": "boolean", "default": true },
+    { "key": "sound", "label": "Ses efektleri", "type": "boolean", "default": true }
+  ]
+}

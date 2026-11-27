@@ -1,0 +1,48 @@
+{
+  "appVersion": "1.2.0",
+  "appDownloadUrl": "https://github.com/gokdumanns/canlioyun-updates/releases/download/v1.2.0/CanliOyun-Setup-v1.2.0.exe",
+  "notes": "Canli Oyun v1.2.0: Tek Tik HTTPS Tarayici Kaynagi (LIVE Studio) + Turkce Spiker & TTS + Kalici Gunluk Sampiyonlar + Onbelleksiz GitHub Raw Guncelleme!",
+  "updatedAt": "2026-11-27T07:54:56.734Z",
+  "games": {
+    "hipodrom-3d": {
+      "name": "Süper Hipodrom 3D",
+      "version": "1.4.0",
+      "files": [
+        "horse.js",
+        "hud.js",
+        "index.js",
+        "lobby-chaos.js",
+        "manifest.json",
+        "spectators.js",
+        "stadium.js"
+      ]
+    },
+    "renk-fethi": {
+      "name": "Renk Fethi",
+      "version": "1.0.0",
+      "files": [
+        "index.js",
+        "manifest.json"
+      ]
+    },
+    "sahil-akdeniz-3d": {
+      "name": "Sahil Böcekleri 3D",
+      "version": "1.0.1",
+      "files": [
+        "beach.js",
+        "cockroach.js",
+        "hud.js",
+        "index.js",
+        "manifest.json"
+      ]
+    },
+    "taht-savasi": {
+      "name": "Taht Savaşı",
+      "version": "1.0.0",
+      "files": [
+        "index.js",
+        "manifest.json"
+      ]
+    }
+  }
+}
